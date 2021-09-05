@@ -32,7 +32,7 @@ module.exports = {
 			.addField('Raison', `**\`${reason}\`**`, false)
 			.setThumbnail(user.displayAvatarURL())
 			.setTimestamp()
-			.setFooter(conf.embeds.embedFooterText)
+			.setFooter(conf.embeds.footer)
 			.setColor(conf.embeds.colors.blurple);
 
 		try {

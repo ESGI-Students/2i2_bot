@@ -20,7 +20,7 @@ module.exports = {
 			.setTitle(`Suppression de ${count} messages`)
 			.addField('Modérateur', `**\`${interaction.member.user.tag}\`**`, true)
 			.setTimestamp()
-			.setFooter(conf.embeds.embedFooterText)
+			.setFooter(conf.embeds.footer)
 			.setColor(conf.embeds.colors.green);
 
         const fetched = await interaction.channel.messages.fetch({limit: count});
