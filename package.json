@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Bot de la Classe 2i2 de l'Ecole Superieure de Genie Informatique",
   "main": "main.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "test": "node src/main.js",
     "dev": "node src/main.js",
