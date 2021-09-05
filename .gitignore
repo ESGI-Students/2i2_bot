@@ -10,7 +10,7 @@
 # Config Files #
 ################
 ./conf.js
-./.env
+.env
 
 # Packages #
 ############
