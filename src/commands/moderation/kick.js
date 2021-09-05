@@ -7,7 +7,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('kick')
 		.addUserOption(option => option.setName('user').setDescription('Utilisateur a expulser').setRequired(true))
-		.addStringOption(option => option.setName('reason').setDescription('Raison du kick'))
+		.addStringOption(option => option.setName('reason').setDescription('Raison du kick').setRequired(true))
 		.setDescription('Ejecter un membre du serveur'),
 	async execute(interaction, bot) {
 

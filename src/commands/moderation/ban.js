@@ -7,8 +7,8 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ban')
 		.addUserOption(option => option.setName('user').setDescription('Utilisateur a bannir').setRequired(true))
-		.addStringOption(option => option.setName('reason').setDescription('Raison du bannissement'))
-		.addIntegerOption(option => option.setName('days').setDescription('Durée en jours du bannissement'))
+		.addStringOption(option => option.setName('reason').setDescription('Raison du bannissement').setRequired(true))
+		.addIntegerOption(option => option.setName('days').setDescription('Durée en jours du bannissement').setRequired(true))
 		.setDescription('Bannir un membre du serveur'),
 	async execute(interaction, bot) {
 
