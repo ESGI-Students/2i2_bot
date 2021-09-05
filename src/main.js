@@ -1,7 +1,7 @@
 const fs = require('fs');
 const colour = require('colour');
 const mysql = require('mysql');
-const conf = require('../../../conf');
+const conf = require('../conf');
 const { Client, Intents, Collection, MessageEmbed } = require('discord.js');
 const bot = new Client({
 	intents:[Intents.FLAGS.GUILDS],
