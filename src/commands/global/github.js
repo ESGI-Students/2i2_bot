@@ -9,7 +9,7 @@ module.exports = {
 	async execute(interaction, bot) {
         let emb = new MessageEmbed() 
             .setColor(conf.embeds.colors.blurple)
-            .setDescription(`**🔗 | https://github.com/DynamoRed/2i2**`);
+            .setDescription(`**🔗 | https://github.com/DynamoRed/2i2**`);
 		await interaction.reply({embeds: [emb]});
 	}
 };

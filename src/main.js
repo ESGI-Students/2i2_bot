@@ -22,7 +22,7 @@ bot.commands = new Collection();
 bot.errorEmbed = (content) => {
 	let errorEmbed = new MessageEmbed() 
 		.setColor(conf.embeds.colors.red)
-		.setDescription(`**❌ | ${content}**`);
+		.setDescription(`**❌ | ${content}**`);
 	return errorEmbed;
 }
 

@@ -9,7 +9,7 @@ module.exports = {
 	async execute(interaction, bot) {
 		let emb = new MessageEmbed() 
             .setColor(conf.embeds.colors.blurple)
-			.setTitle(`**⏲️ | Latences**`)
+			.setTitle(`**⏰ | Latences**`)
             .setDescription(`Client: **\`${Date.now() - interaction.createdTimestamp}ms\`**
 			API: **\`${Math.round(bot.ws.ping)}ms\`**`);
 		await interaction.reply({embeds: [emb]});
