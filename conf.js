@@ -6,9 +6,6 @@ conf.general.prefix = '!';
 conf.general.guild = '884098680704077854';
 conf.general.id = '884116729905684530';
 
-conf.settings = {};
-conf.settings.owners = [];
-
 conf.embeds = {};
 conf.embeds.color = '5865F2';
 conf.embeds.footer = 'Maintained by DynamoRed#0001';
