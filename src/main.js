@@ -1,7 +1,8 @@
 const fs = require('fs');
 const colour = require('colour');
 const mysql = require('mysql');
-const { Client, Intents, Collection } = require('discord.js');
+const conf = require('../../../conf');
+const { Client, Intents, Collection, MessageEmbed } = require('discord.js');
 const bot = new Client({
 	intents:[Intents.FLAGS.GUILDS],
 	presence: {
@@ -17,6 +18,13 @@ const events = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'
 const commands = fs.readdirSync('./src/commands');
 
 bot.commands = new Collection();
+
+bot.errorEmbed = (content) => {
+	let errorEmbed = new MessageEmbed() 
+		.setColor(conf.embeds.colors.red)
+		.setDescription(`**❌ | ${content}**`);
+	return errorEmbed;
+}
 
 require('dotenv').config();
 
