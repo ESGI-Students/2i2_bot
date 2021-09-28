@@ -7,6 +7,13 @@ module.exports = {
 		.setName('aurelien')
 		.setDescription(`Try it bitches :)`),
 	async execute(interaction, bot) {
-		await interaction.reply(`eyeheheyeheye ! Tu me brules les yeux tellement t moche gros`);
+		await interaction.reply(`Bon bah let's go:
+		Insta: aurelienkrf
+		Twitter: @ducstreamful
+		Snap: aurelienkrf2
+		Spotify: 4lvjayyixslfa2a5rrsxinz09
+		Paypal: paypal.me/aurelienkrf
+		OnlyFans: Coming soon
+		`);
 	}
 };
