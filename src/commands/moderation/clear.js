@@ -31,10 +31,8 @@ module.exports = {
 			return interaction.reply({embeds: [bot.errorEmbed(`Je n'ai pas les permissions necessaires a cela !`)]});
 		}
 
-		let rep = await interaction.reply({embeds: [emb]});
-
-		setTimeout(() => {
-			rep.delete();
-		}, 5000)
+		let msg = await interaction.channel.send(emb);
+		setTimeout(() => {msg.delete()}, 5 * 1000)
+		return;
 	}
 };
