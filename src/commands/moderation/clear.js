@@ -20,7 +20,7 @@ module.exports = {
 			.setTitle(`Suppression de ${count} messages`)
 			.addField('Modérateur', `**\`${interaction.member.user.tag}\`**`, true)
 			.setTimestamp()
-			.setFooter(conf.embeds.footer)
+			.setFooter('Message auto-supprimé dans 5 SECONDES !')
 			.setColor(conf.embeds.colors.green);
 
         const fetched = await interaction.channel.messages.fetch({limit: count});
@@ -31,6 +31,10 @@ module.exports = {
 			return interaction.reply({embeds: [bot.errorEmbed(`Je n'ai pas les permissions necessaires a cela !`)]});
 		}
 
-		await interaction.reply({embeds: [emb]});
+		let rep = await interaction.reply({embeds: [emb]});
+
+		setTimeout(() => {
+			rep.remove();
+		}, 5000)
 	}
 };
