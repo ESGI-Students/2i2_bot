@@ -34,7 +34,7 @@ module.exports = {
 		let rep = await interaction.reply({embeds: [emb]});
 
 		setTimeout(() => {
-			rep.remove();
+			rep.delete();
 		}, 5000)
 	}
 };
