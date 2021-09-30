@@ -1,6 +1,8 @@
 const conf = require('../../../conf');
+const search = require('discord.js-search');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Permissions } = require('discord.js');
+
 
 module.exports = {
 	data: new SlashCommandBuilder()
