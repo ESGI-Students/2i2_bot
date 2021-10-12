@@ -23,7 +23,7 @@ module.exports = {
 
         if(bot.games.invitations[user.id]){
             if(bot.games.invitations[user.id].by == interaction.member.id) {
-                return interaction.reply({embeds: [bot.errorEmbed(`Vous avez déjà defier cet utilisateur`)]});
+                return interaction.reply({embeds: [bot.errorEmbed(`Vous avez déjà defié cet utilisateur`)]});
             }
         }
 
@@ -48,7 +48,7 @@ module.exports = {
                 await interaction.reply({embeds: [emb]});
                 let emb2 = new MessageEmbed() 
                     .setColor(conf.embeds.colors.green)
-                    .setDescription(`**Que le jeu commence !**`);
+                    .setDescription(`**Que le jeu commence !** `);
                 await interaction.channel.send({embeds: [emb2]});
                 await interaction.channel.send(`----------------------------------------------------------
 <@${party.players[0]}> est le premier a jouer !
