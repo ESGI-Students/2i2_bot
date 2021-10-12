@@ -31,7 +31,7 @@ module.exports = {
             if(bot.games.invitations[interaction.member.id].by == user.id){        
                 bot.games.parties.push({
                     players: [interaction.member.id, user.id],
-                    game: 'TicTacToe',
+                    game: 'Morpion',
                 });
 
                 let emb = new MessageEmbed() 

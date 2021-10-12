@@ -11,7 +11,7 @@ module.exports = {
         let content = ''
         if(bot.games.parties.length == 0) content = 'Aucune partie en cours !';
         for(let i = 0; i < bot.games.parties.length; i++){
-            content += `- <@${bot.games.parties[i].players[0]}> **VS** <@${bot.games.parties[i].players[1]}>\n`;
+            content += `- <@${bot.games.parties[i].players[0]}> **VS** <@${bot.games.parties[i].players[1]}>: ${bot.games.parties[i].game}\n`;
         }
         let emb = new MessageEmbed() 
             .setColor(conf.embeds.colors.blurple)
