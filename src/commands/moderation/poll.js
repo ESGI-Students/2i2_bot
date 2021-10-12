@@ -36,6 +36,6 @@ module.exports = {
 
 		let msg = await interaction.channel.send({embeds: [emb]});
 		
-		return interaction.reply({embeds: emb});
+		await interaction.reply({embeds: msg});
 	}
 };
