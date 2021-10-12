@@ -19,6 +19,12 @@ module.exports = {
             }
         }
 
+        if(bot.games.invitations[user.id]){
+            if(bot.games.invitations[user.id].by == interaction.member.id) {
+                return interaction.reply({embeds: [bot.errorEmbed(`Vous avez déjà defier cet utilisateur`)]});
+            }
+        }
+
         if(bot.games.invitations[interaction.member.id]){
             if(bot.games.invitations[interaction.member.id].by == user.id){        
                 bot.games.parties.push({
@@ -27,12 +33,13 @@ module.exports = {
                 });
 
                 let emb = new MessageEmbed() 
-                    .setColor(conf.embeds.colors.green)
+                    .setColor(conf.embeds.colors.blurple)
                     .setDescription(`<@${interaction.member.id}> a accepter le défi de <@${user.id}>`);
+                await interaction.reply({embeds: [emb]});
                 let emb2 = new MessageEmbed() 
                     .setColor(conf.embeds.colors.green)
                     .setDescription(`**Que le jeu commence !**`);
-                await interaction.channel.send({embeds: [emb, emb2]});
+                await interaction.channel.send({embeds: [emb2]});
                 return;
             }
         }
@@ -44,9 +51,9 @@ module.exports = {
 
         let emb = new MessageEmbed() 
             .setColor(conf.embeds.colors.blurple)
-            .setDescription(`<@${interaction.member.id}> vient de vous defier au jeu du Morpion
+            .setDescription(`<@${user.id}> vient de vous defier au jeu du Morpion
             
-            __Utilisez:__ '/tictactoe <@${user.id}>' pour accepter son defi`);
-		await interaction.channel.send({content: `<@${user.id}>,`, embeds: [emb]});
+            __Utilisez:__ '/tictactoe <@${interaction.member.id}>' pour accepter son defi`);
+		await interaction.reply({content: `<@${user.id}>,`, embeds: [emb]});
     }
 };
