@@ -6,6 +6,9 @@ const { Routes } = require('discord-api-types/v9');
 module.exports = (bot) => {
 	const botId = conf.general.id;
 	const guildId = conf.general.guild;
+	
+	bot.channels.cache.get('884103274704293899').send('Bot now online !')
+	
 	bot.handleCommands = async (commandFolders, path) => {
 		bot.commandArray = [];
 		for (folder of commandFolders) {
