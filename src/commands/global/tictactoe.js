@@ -84,12 +84,12 @@ module.exports = {
             __Utilisez:__ '**/tictactoe <@${interaction.member.id}>**' pour accepter son defi`);
 		let invitMsg = await interaction.reply({content: `<@${user.id}>,`, embeds: [emb]});
 
-        setTimeout(() => {
+        setTimeout(async () => {
             if(!bot.games.invitations[user.id]) return;
             if(bot.games.invitations[user.id].accepted) return;
 
             invitMsg.delete();
-            await interaction.reply({content: `<@${interaction.member.id}>, votre demande de defi vers <@${user.id}> a expiré !`});
+            await interaction.channel.send({content: `<@${interaction.member.id}>, votre demande de defi vers <@${user.id}> a expiré !`});
             bot.games.invitations[user.id] = null;
         }, 5*60*1000)
     }
