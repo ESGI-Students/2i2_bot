@@ -12,6 +12,8 @@ module.exports = {
 		const user = interaction.options.getUser('user');
 		if (!user) return interaction.reply({embeds: [bot.errorEmbed(`Vous devez mentionner un utilisateur valide !`)]});
 
+        if (user.id == interaction.member.id) return interaction.reply({embeds: [bot.errorEmbed(`Vous ne pouvez pas vous defier vous meme !`)]});
+
         for(let i = 0; i < bot.games.parties.length; i++){
             for(let y = 0; y < bot.games.parties[i].players.length; y++){
                 if(bot.games.parties[i].players[y] == interaction.member.id) return interaction.reply({embeds: [bot.errorEmbed(`Vous etes déjà en partie`)]});

@@ -9,12 +9,13 @@ module.exports = {
 		.setDescription(`Lister les parties en cours`),
 	async execute(interaction, bot) {
         let content = ''
+        if(bot.games.parties.length == 0) content = 'Aucune partie en cours !';
         for(let i = 0; i < bot.games.parties.length; i++){
             content += `- <@${bot.games.parties[i].players[0]}> **VS** <@${bot.games.parties[i].players[1]}>\n`;
         }
         let emb = new MessageEmbed() 
             .setColor(conf.embeds.colors.blurple)
-            .setTitle('🎮 | Parties en cours')
+            .setTitle('🎮 | Parties en cours')
             .setDescription(`${content}`);
 		await interaction.reply({embeds: [emb]});
     }
