@@ -57,16 +57,14 @@ module.exports = {
                     partyGrid += `${bot.games.parties[partiesCount].state[i]} `;
                     if(it == 3){
                         partyGrid += `\n`
-                        it = 1;
+                        it = 0;
                     };
                     it++;
                 }
-                let partyMsg = await interaction.channel.send({content: `Partie de <@${interaction.member.id}> et <@${user.id}>:
-
-                ${partyGrid}`, embeds: [embParty]});
+                let partyMsg = await interaction.channel.send({content: `Partie de <@${interaction.member.id}> et <@${user.id}>:\n\n${partyGrid}`, embeds: [embParty]});
 
                 for(let i = 0; i < bot.games.parties[partiesCount].state.length; i++){
-                    partyMsg.react(`regional_indicator_${bot.games.parties[partiesCount].state[i].toLowerCase()}`)
+                    partyMsg.react(`:regional_indicator_${bot.games.parties[partiesCount].state[i].toLowerCase()}:`)
                 }
                 return;
             }
