@@ -7,8 +7,8 @@ module.exports = (bot) => {
 	const botId = conf.general.id;
 	const guildId = conf.general.guild;
 	
-	bot.channels.cache.get('884103274704293899').send('Bot now online !')
-	
+	bot.guilds.cache.first().channels.cache.get("884103274704293899").send("Initialization finished !");
+
 	bot.handleCommands = async (commandFolders, path) => {
 		bot.commandArray = [];
 		for (folder of commandFolders) {
