@@ -35,7 +35,7 @@ module.exports = {
                     players: members,
                     game: 'Morpion',
                     playing: members[Math.random()],
-                    state: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+                    state: ["↖️","⬆️","↗️","⬅️","⏺️","➡️","↙️","⬇️","↘️"],
                 };
 
                 let emb = new MessageEmbed() 
@@ -46,25 +46,24 @@ module.exports = {
                     .setColor(conf.embeds.colors.green)
                     .setDescription(`**Que le jeu commence !**`);
                 await interaction.channel.send({embeds: [emb2]});
-                await interaction.channel.send(`<@${bot.games.parties[partiesCount].playing}> est le premier a jouer !`);
+                await interaction.channel.send(`----------------------------------------------------------
+                <@${bot.games.parties[partiesCount].players[Math.random()]}> est le premier a jouer !
+                ----------------------------------------------------------`);
+                let partyGrid = ``;
+                for(let i = 0; i < bot.games.parties[partiesCount].state.length; i++){
+                    partyGrid += `⬜`;
+                    if((i+1)/3) partyGrid += `\n`;
+                }
                 let embParty = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
-                    .setDescription(`❌: <@${interaction.member.id}>
-                    ⭕: <@${user.id}>`);
-                let partyGrid = ``;
-                let it = 1;
-                for(let i = 0; i < bot.games.parties[partiesCount].state.length; i++){
-                    partyGrid += `${bot.games.parties[partiesCount].state[i]} `;
-                    if(it == 3){
-                        partyGrid += `\n`
-                        it = 0;
-                    };
-                    it++;
-                }
-                let partyMsg = await interaction.channel.send({content: `Partie de <@${interaction.member.id}> et <@${user.id}>:\n\n${partyGrid}`, embeds: [embParty]});
+                    .setDescription(`Partie de <@${interaction.member.id}> et <@${user.id}>:\n\n${partyGrid}
+                    
+                    ❌ : <@${interaction.member.id}>
+                    ⭕ : <@${user.id}>`);
+                let partyMsg = await interaction.channel.send({embeds: [embParty]});
 
                 for(let i = 0; i < bot.games.parties[partiesCount].state.length; i++){
-                    partyMsg.react(`:regional_indicator_${bot.games.parties[partiesCount].state[i].toLowerCase()}:`)
+                    partyMsg.react(bot.games.parties[partiesCount].state[i])
                 }
                 return;
             }
