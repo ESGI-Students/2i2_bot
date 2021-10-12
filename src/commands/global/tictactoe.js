@@ -30,12 +30,13 @@ module.exports = {
         if(bot.games.invitations[interaction.member.id]){ 
             if(bot.games.invitations[interaction.member.id].by == user.id){     
                 let players = [interaction.member.id, user.id];
-                let party = bot.games.parties.push({
+                const partiesCount = bot.games.parties.length;
+                bot.games.parties[partiesCount] = {
                     players: players,
                     game: 'Morpion',
                     playing: players[Math.random()],
                     state: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
-                });
+                };
 
                 let emb = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
@@ -45,18 +46,22 @@ module.exports = {
                     .setColor(conf.embeds.colors.green)
                     .setDescription(`**Que le jeu commence !**`);
                 await interaction.channel.send({embeds: [emb2]});
-                await interaction.channel.send(`<@${party.playing}> est le premier a jouer !`);
+                await interaction.channel.send(`<@${bot.games.parties[partiesCount].playing}> est le premier a jouer !`);
                 let embParty = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
                     .setDescription(`❌: <@${interaction.member.id}>
                     ⭕: <@${user.id}>`);
                 let partyGrid = ``;
+                for(let i = 0; i < bot.games.parties[partiesCount].state.length; i++){
+                    partyGrid += `${bot.games.parties[partiesCount].state[i]} `;
+                    if((i+1)/3 == 0) partyGrid += `\n`
+                }
                 let partyMsg = await interaction.channel.send({content: `Partie de <@${interaction.member.id}> et <@${user.id}>:
 
                 ${partyGrid}`, embeds: [embParty]});
 
-                for(let i = 0; i < party.state.length; i++){
-                    partyMsg.react(`:regional_indicator_${party.state[i].toLowerCase()}`)
+                for(let i = 0; i < bot.games.parties[partiesCount].state.length; i++){
+                    partyMsg.react(`:regional_indicator_${bot.games.parties[partiesCount].state[i].toLowerCase()}`)
                 }
                 return;
             }
