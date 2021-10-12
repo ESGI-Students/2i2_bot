@@ -28,7 +28,9 @@ module.exports = {
         }
 
         if(bot.games.invitations[interaction.member.id]){ 
-            if(bot.games.invitations[interaction.member.id].by == user.id){     
+            if(bot.games.invitations[interaction.member.id].by == user.id){  
+                bot.games.invitations[interaction.member.id].accepted = true;
+
                 let members = [interaction.member.id, user.id];
                 const partiesCount = bot.games.parties.length;
                 bot.games.parties[partiesCount] = {
@@ -80,6 +82,15 @@ module.exports = {
             .setDescription(`<@${interaction.member.id}> vient de vous defier au jeu du Morpion
             
             __Utilisez:__ '**/tictactoe <@${interaction.member.id}>**' pour accepter son defi`);
-		await interaction.reply({content: `<@${user.id}>,`, embeds: [emb]});
+		let invitMsg = await interaction.reply({content: `<@${user.id}>,`, embeds: [emb]});
+
+        setTimeout(() => {
+            if(!bot.games.invitations[user.id]) return;
+            if(bot.games.invitations[user.id].accepted) return;
+
+            invitMsg.delete();
+            await interaction.reply({content: `<@${interaction.member.id}>, votre demande de defi vers <@${user.id}> a expiré !`});
+            bot.games.invitations[user.id] = null;
+        }, 5*60*1000)
     }
-};
+}
