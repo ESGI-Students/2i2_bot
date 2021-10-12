@@ -35,6 +35,10 @@ process.on('unhandledRejection', (reason, promise) => {
     console.log('Unhandled Rejection at:', reason.stack || reason)
 });
 
+bot.on("ready", () => {
+	bot.guilds.cache.get('884098680704077854').channels.cache.get('884103274704293899').send('Bot now online !')
+});
+
 (async () => {
 	for (handler of handlers) require(`./handlers/${handler}`)(bot)
 
