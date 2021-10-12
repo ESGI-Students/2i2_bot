@@ -13,9 +13,9 @@ module.exports = {
 
 		if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) return interaction.reply({embeds: [bot.errorEmbed(`Vous n'avez pas la permission de faire cela !`)]});
 
-		let question = interaction.options.getString('question');
+		let ask = interaction.options.getString('question');
         
-		if (!question) return interaction.reply({embeds: [bot.errorEmbed(`Vous devez poser une question pour le sondage.`)]});
+		if (!ask) return interaction.reply({embeds: [bot.errorEmbed(`Vous devez poser une question pour le sondage.`)]});
 
 		let choice = interaction.options.getString('response');
         
