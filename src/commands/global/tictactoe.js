@@ -42,7 +42,7 @@ module.exports = {
 
                 let emb = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
-                    .setDescription(`_<@${interaction.member.id}> a accepter le défi de <@${user.id}>_`);
+                    .setDescription(`_<@${interaction.member.id}> a accepté le défi de <@${user.id}>_`);
                 await interaction.reply({embeds: [emb]});
                 let emb2 = new MessageEmbed() 
                     .setColor(conf.embeds.colors.green)
@@ -51,13 +51,8 @@ module.exports = {
                 await interaction.channel.send(`----------------------------------------------------------
 <@${party.players[0]}> est le premier a jouer !
 ----------------------------------------------------------`);
-                let partyGrid = ``;
+                let partyGrid = `⬜⬜⬜\n⬜⬜⬜\n⬜⬜⬜`;
                 let it = 1;
-                for(let i = 0; i < party.state.length; i++){
-                    partyGrid += `⬜`;
-                    if(it/3 == 0) partyGrid += `\n`;
-                    it++;
-                }
                 let embParty = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
                     .setDescription(`Partie de <@${interaction.member.id}> et <@${user.id}>:\n\n${partyGrid}
@@ -69,6 +64,8 @@ module.exports = {
                 for(let i = 0; i < party.state.length; i++){
                     partyMsg.react(party.state[i])
                 }
+
+                party.message = partyMsg.id;
                 return;
             }
         }
