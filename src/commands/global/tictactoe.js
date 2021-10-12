@@ -34,9 +34,11 @@ module.exports = {
                 bot.games.parties[partiesCount] = {
                     players: members,
                     game: 'Morpion',
-                    playing: members[Math.random()],
+                    playing: members[0],
                     state: ["↖️","⬆️","↗️","⬅️","⏺️","➡️","↙️","⬇️","↘️"],
                 };
+
+                let party = bot.games.parties[partiesCount];
 
                 let emb = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
@@ -47,12 +49,14 @@ module.exports = {
                     .setDescription(`**Que le jeu commence !**`);
                 await interaction.channel.send({embeds: [emb2]});
                 await interaction.channel.send(`----------------------------------------------------------
-                <@${bot.games.parties[partiesCount].players[Math.random()]}> est le premier a jouer !
-                ----------------------------------------------------------`);
+<@${party.players[0]}> est le premier a jouer !
+----------------------------------------------------------`);
                 let partyGrid = ``;
-                for(let i = 0; i < bot.games.parties[partiesCount].state.length; i++){
+                let it = 1;
+                for(let i = 0; i < party.state.length; i++){
                     partyGrid += `⬜`;
-                    if((i+1)/3) partyGrid += `\n`;
+                    if((it)/3) partyGrid += `\n`;
+                    it++;
                 }
                 let embParty = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
@@ -62,8 +66,8 @@ module.exports = {
                     ⭕ : <@${user.id}>`);
                 let partyMsg = await interaction.channel.send({embeds: [embParty]});
 
-                for(let i = 0; i < bot.games.parties[partiesCount].state.length; i++){
-                    partyMsg.react(bot.games.parties[partiesCount].state[i])
+                for(let i = 0; i < party.state.length; i++){
+                    partyMsg.react(party.state[i])
                 }
                 return;
             }
