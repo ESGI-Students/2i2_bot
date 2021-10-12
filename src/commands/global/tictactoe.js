@@ -52,11 +52,9 @@ module.exports = {
 <@${party.players[0]}> est le premier a jouer !
 ----------------------------------------------------------`);
                 let partyGrid = ``;
-                let it = 1;
                 for(let i = 0; i < party.state.length; i++){
                     partyGrid += `⬜`;
-                    if((it)/3) partyGrid += `\n`;
-                    it++;
+                    if((i+1)/3 == 0) partyGrid += `\n`;
                 }
                 let embParty = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
