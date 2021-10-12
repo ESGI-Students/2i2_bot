@@ -18,6 +18,9 @@ const events = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'
 const commands = fs.readdirSync('./src/commands');
 
 bot.commands = new Collection();
+bot.games = [];
+bot.games.parties = [];
+bot.games.invitations = [];
 
 bot.errorEmbed = (content) => {
 	let errorEmbed = new MessageEmbed() 
