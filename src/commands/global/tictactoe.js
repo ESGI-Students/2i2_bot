@@ -28,10 +28,13 @@ module.exports = {
         }
 
         if(bot.games.invitations[interaction.member.id]){ 
-            if(bot.games.invitations[interaction.member.id].by == user.id){        
-                bot.games.parties.push({
-                    players: [interaction.member.id, user.id],
+            if(bot.games.invitations[interaction.member.id].by == user.id){     
+                let players = [interaction.member.id, user.id];
+                let party = bot.games.parties.push({
+                    players: players,
                     game: 'Morpion',
+                    playing: players[Math.random()],
+                    state: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
                 });
 
                 let emb = new MessageEmbed() 
@@ -42,6 +45,19 @@ module.exports = {
                     .setColor(conf.embeds.colors.green)
                     .setDescription(`**Que le jeu commence !**`);
                 await interaction.channel.send({embeds: [emb2]});
+                await interaction.channel.send(`<@${party.playing}> est le premier a jouer !`);
+                let emb2 = new MessageEmbed() 
+                    .setColor(conf.embeds.colors.blurple)
+                    .setDescription(`❌: <@${interaction.member.id}>
+                    ⭕: <@${user.id}>`);
+                let partyGrid = ``;
+                let partyMsg = await interaction.channel.send({content: `Partie de <@${interaction.member.id}> et <@${user.id}>:
+
+                ${partyGrid}`, embeds: [emb2]});
+
+                for(let i = 0; i < party.state.length; i++){
+                    partyMsg.react(`:regional_indicator_${party.state[i].toLowerCase()}`)
+                }
                 return;
             }
         }
