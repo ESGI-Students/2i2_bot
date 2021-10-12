@@ -52,10 +52,10 @@ module.exports = {
 <@${party.players[0]}> est le premier a jouer !
 ----------------------------------------------------------`);
                 let partyGrid = `⬜⬜⬜\n⬜⬜⬜\n⬜⬜⬜`;
-                let it = 1;
                 let embParty = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
-                    .setDescription(`Partie de <@${interaction.member.id}> et <@${user.id}>:\n\n${partyGrid}
+                    .setDescription(`Partie de <@${interaction.member.id}> et <@${user.id}>:
+                    C'est a <@${party.playing}> de mettre un ❌\n\n${partyGrid}
                     
                     ❌ : <@${interaction.member.id}>
                     ⭕ : <@${user.id}>`);
