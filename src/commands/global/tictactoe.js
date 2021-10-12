@@ -88,9 +88,8 @@ module.exports = {
             if(!bot.games.invitations[user.id]) return;
             if(bot.games.invitations[user.id].accepted) return;
 
-            invitMsg.delete();
             await interaction.channel.send({content: `<@${interaction.member.id}>, votre demande de defi vers <@${user.id}> a expiré !`});
             bot.games.invitations[user.id] = null;
-        }, 1*60*1000)
+        }, 1*30*1000)
     }
 }
