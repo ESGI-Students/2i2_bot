@@ -51,7 +51,7 @@ module.exports = {
 
         let emb = new MessageEmbed() 
             .setColor(conf.embeds.colors.blurple)
-            .setDescription(`<@${user.id}> vient de vous defier au jeu du Morpion
+            .setDescription(`<@${interaction.member.id}> vient de vous defier au jeu du Morpion
             
             __Utilisez:__ '/tictactoe <@${interaction.member.id}>' pour accepter son defi`);
 		await interaction.reply({content: `<@${user.id}>,`, embeds: [emb]});
