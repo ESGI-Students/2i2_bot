@@ -29,12 +29,12 @@ module.exports = {
 
         if(bot.games.invitations[interaction.member.id]){ 
             if(bot.games.invitations[interaction.member.id].by == user.id){     
-                let players = [interaction.member.id, user.id];
+                let members = [interaction.member.id, user.id];
                 const partiesCount = bot.games.parties.length;
                 bot.games.parties[partiesCount] = {
-                    players: players,
+                    players: members,
                     game: 'Morpion',
-                    playing: players[Math.random()],
+                    playing: members[Math.random()],
                     state: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
                 };
 
@@ -52,16 +52,21 @@ module.exports = {
                     .setDescription(`❌: <@${interaction.member.id}>
                     ⭕: <@${user.id}>`);
                 let partyGrid = ``;
+                let it = 1;
                 for(let i = 0; i < bot.games.parties[partiesCount].state.length; i++){
                     partyGrid += `${bot.games.parties[partiesCount].state[i]} `;
-                    if((i+1)/3 == 0) partyGrid += `\n`
+                    if(it == 3){
+                        partyGrid += `\n`
+                        it = 1;
+                    };
+                    it++;
                 }
                 let partyMsg = await interaction.channel.send({content: `Partie de <@${interaction.member.id}> et <@${user.id}>:
 
                 ${partyGrid}`, embeds: [embParty]});
 
                 for(let i = 0; i < bot.games.parties[partiesCount].state.length; i++){
-                    partyMsg.react(`:regional_indicator_${bot.games.parties[partiesCount].state[i].toLowerCase()}`)
+                    partyMsg.react(`regional_indicator_${bot.games.parties[partiesCount].state[i].toLowerCase()}`)
                 }
                 return;
             }
