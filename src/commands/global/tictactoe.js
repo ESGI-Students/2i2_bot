@@ -46,14 +46,14 @@ module.exports = {
                     .setDescription(`**Que le jeu commence !**`);
                 await interaction.channel.send({embeds: [emb2]});
                 await interaction.channel.send(`<@${party.playing}> est le premier a jouer !`);
-                let emb2 = new MessageEmbed() 
+                let embParty = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
                     .setDescription(`❌: <@${interaction.member.id}>
                     ⭕: <@${user.id}>`);
                 let partyGrid = ``;
                 let partyMsg = await interaction.channel.send({content: `Partie de <@${interaction.member.id}> et <@${user.id}>:
 
-                ${partyGrid}`, embeds: [emb2]});
+                ${partyGrid}`, embeds: [embParty]});
 
                 for(let i = 0; i < party.state.length; i++){
                     partyMsg.react(`:regional_indicator_${party.state[i].toLowerCase()}`)
