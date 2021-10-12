@@ -34,7 +34,7 @@ module.exports = {
 
                 let emb = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
-                    .setDescription(`<@${interaction.member.id}> a accepter le défi de <@${user.id}>`);
+                    .setDescription(`_<@${interaction.member.id}> a accepter le défi de <@${user.id}>_`);
                 await interaction.reply({embeds: [emb]});
                 let emb2 = new MessageEmbed() 
                     .setColor(conf.embeds.colors.green)
@@ -53,7 +53,7 @@ module.exports = {
             .setColor(conf.embeds.colors.blurple)
             .setDescription(`<@${interaction.member.id}> vient de vous defier au jeu du Morpion
             
-            __Utilisez:__ '/tictactoe <@${interaction.member.id}>' pour accepter son defi`);
+            __Utilisez:__ '**/tictactoe <@${interaction.member.id}>**' pour accepter son defi`);
 		await interaction.reply({content: `<@${user.id}>,`, embeds: [emb]});
     }
 };
