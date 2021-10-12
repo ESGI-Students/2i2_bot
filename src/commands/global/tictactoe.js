@@ -91,6 +91,6 @@ module.exports = {
             invitMsg.delete();
             await interaction.channel.send({content: `<@${interaction.member.id}>, votre demande de defi vers <@${user.id}> a expiré !`});
             bot.games.invitations[user.id] = null;
-        }, 5*60*1000)
+        }, 1*60*1000)
     }
 }
