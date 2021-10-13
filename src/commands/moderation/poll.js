@@ -36,6 +36,10 @@ module.exports = {
 		
 		await interaction.reply({embeds: msg});
 
-		for (i = 0; i < options.length; i++) msg.react(reactions[i]);
+		for (i = 0; i < options.length; i++){
+			msg.react(reactions[i]);
+		}
+
+		return;
 	}
 };
