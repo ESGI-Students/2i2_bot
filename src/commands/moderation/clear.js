@@ -28,7 +28,7 @@ module.exports = {
 		try {
 			interaction.channel.bulkDelete(fetched);
 		} catch (e) {
-			return interaction.reply({embeds: [bot.errorEmbed(`Je n'ai pas les permissions necessaires a cela !`)]});
+			return interaction.reply({embeds: [bot.errorEmbed(`Je n'ai pas les permissions necessaires a cela !`)]}); 
 		}
 
 		let msg = await interaction.reply({embeds: [emb]});
