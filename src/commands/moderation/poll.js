@@ -23,7 +23,7 @@ module.exports = {
 
 		const reactions = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸"];
 		
-		const [question, ...choices] = args.join(" ").split(" | ");
+		const [question, ...choices] = interaction.join(" ").split(" | ");
 
 		if (choices.length > 20) return interaction.reply({embeds: [bot.errorEmbed(`Il ne peut pas y avoir plus de 20 choix.`)]});
 		
