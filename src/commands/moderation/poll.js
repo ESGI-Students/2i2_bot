@@ -32,7 +32,9 @@ module.exports = {
 			.setTimestamp()
 			.setColor(conf.embeds.colors.blurple);
 
-		let msg = await interaction.reply({embeds: [emb]});
+		await interaction.reply(`Nouveau sondage !`);
+
+		let msg = await interaction.channel.send({embeds: [emb]});
 
 		for (i = 0; i < options.length; i++){
 			msg.react(reactions[i]);
