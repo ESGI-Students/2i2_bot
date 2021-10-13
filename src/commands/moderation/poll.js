@@ -19,7 +19,7 @@ module.exports = {
 
 		let options = interaction.options.getString('options').split(" | ");
         
-		if (options.length < 2) return interaction.reply({embeds: [bot.errorEmbed(`Le sondage doit comporter au moins un choix.`)]});
+		if (options.length < 2) return interaction.reply({embeds: [bot.errorEmbed(`Le sondage doit comporter au deux un choix.`)]});
 
 		if (options.length > 20) return interaction.reply({embeds: [bot.errorEmbed(`Il ne peut pas y avoir plus de 20 choix.`)]});
 
