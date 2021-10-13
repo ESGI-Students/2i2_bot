@@ -5,9 +5,10 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ball')
+		.addStringOption(option => option.setName('question').setDescription('Question').setRequired(true))
 		.setDescription(`Pose une question et j'y répondrai 😉`),
-	async execute(interaction, args) {
-        const question = args.join(" ");
+	async execute(interaction) {
+		let question = interaction.options.getString('question');
         
         if (!question) return interaction.reply({embeds: [bot.errorEmbed(`Vous devez poser une question.`)]});
 		
