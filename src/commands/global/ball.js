@@ -7,7 +7,7 @@ module.exports = {
 		.setName('ball')
 		.addStringOption(option => option.setName('question').setDescription('Question').setRequired(true))
 		.setDescription(`Pose une question et j'y répondrai 😉`),
-	async execute(interaction) {
+	async execute(interaction, bot) {
 		let question = interaction.options.getString('question');
         
         if (!question) return interaction.reply({embeds: [bot.errorEmbed(`Vous devez poser une question.`)]});
