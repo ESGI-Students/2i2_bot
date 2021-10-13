@@ -28,10 +28,11 @@ module.exports = {
 		try {
 			interaction.channel.bulkDelete(fetched);
 		} catch (e) {
-			return interaction.reply({embeds: [bot.errorEmbed(`Je n'ai pas les permissions necessaires a cela !`)]}); 
+			return interaction.reply({embeds: [bot.errorEmbed(`Je n'ai pas les permissions necessaires a cela !`)]});
 		}
 
-		let msg = await interaction.reply({embeds: [emb]});
+		await interaction.reply(`Je m'en occupe !`);
+		let msg = await interaction.channel.send({embeds: [emb]});
 		setTimeout(() => {msg.delete()}, 5 * 1000)
 		return;
 	}
