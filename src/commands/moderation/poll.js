@@ -19,7 +19,7 @@ module.exports = {
 
 		let options = interaction.options.getString('options').split(" | ");
         
-		if (options.length < 2) return interaction.reply({embeds: [bot.errorEmbed(`Le sondage doit comporter au moins un choix.`)]});
+		if (options.length < 2) return interaction.reply({embeds: [bot.errorEmbed(`Le sondage doit comporter au deux un choix.`)]});
 
 		if (options.length > 20) return interaction.reply({embeds: [bot.errorEmbed(`Il ne peut pas y avoir plus de 20 choix.`)]});
 
@@ -32,9 +32,7 @@ module.exports = {
 			.setTimestamp()
 			.setColor(conf.embeds.colors.blurple);
 
-		let msg = await interaction.channel.send({embeds: [emb]});
-		
-		await interaction.reply({embeds: msg});
+		let msg = await interaction.reply({embeds: [emb]});
 
 		for (i = 0; i < options.length; i++){
 			msg.react(reactions[i]);
