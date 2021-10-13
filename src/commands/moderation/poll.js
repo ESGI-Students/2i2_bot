@@ -27,7 +27,7 @@ module.exports = {
 		
 		let emb = new MessageEmbed()
 			.setTitle(question)
-			.setDescription(choices.map((choice, i) => `${reactions[i]} ${choice}`).join("\n\n"))
+			.setDescription(options.map((choice, i) => `${reactions[i]} ${choice}`).join("\n\n"))
 			.addField('Auteur', `**\`${interaction.member.user.tag}\`**`, true)
 			.setTimestamp()
 			.setColor(conf.embeds.colors.green);
