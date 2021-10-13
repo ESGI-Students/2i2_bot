@@ -8,24 +8,22 @@ module.exports = {
 		.setName('poll')
 		.setDescription('Céer un sondage')
 		.addStringOption(option => option.setName('question').setDescription('Question du sondage').setRequired(true))
-		.addStringOption(option => option.setName('response').setDescription('Réponse au sondage').setRequired(true)),
+		.addStringOption(option => option.setName('options').setDescription('Options du poll. Séparés par des | ').setRequired(true)),
 	async execute(interaction, bot) {
 
 		if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) return interaction.reply({embeds: [bot.errorEmbed(`Vous n'avez pas la permission de faire cela !`)]});
 
-		let ask = interaction.options.getString('question');
+		let question = interaction.options.getString('question');
         
-		if (!ask) return interaction.reply({embeds: [bot.errorEmbed(`Vous devez poser une question pour le sondage.`)]});
+		if (!question) return interaction.reply({embeds: [bot.errorEmbed(`Vous devez poser une question pour le sondage.`)]});
 
-		let choice = interaction.options.getString('response');
+		let options = interaction.options.getString('options').split(" | ");
         
-		if (!choice) return interaction.reply({embeds: [bot.errorEmbed(`Le sondage doit comporter au moins un choix.`)]});
+		if (options.length < 2) return interaction.reply({embeds: [bot.errorEmbed(`Le sondage doit comporter au moins un choix.`)]});
 
-		const reactions = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸"];
+		if (options.length > 20) return interaction.reply({embeds: [bot.errorEmbed(`Il ne peut pas y avoir plus de 20 choix.`)]});
 
-		const [question, ...choices] = interaction.join(" ").split(" | ");
-
-		if (choices.length > 20) return interaction.reply({embeds: [bot.errorEmbed(`Il ne peut pas y avoir plus de 20 choix.`)]});
+		let reactions = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸"];
 		
 		let emb = new MessageEmbed()
 			.setTitle(question)
