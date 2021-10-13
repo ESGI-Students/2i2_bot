@@ -36,7 +36,7 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 bot.on("ready", () => {
-	bot.guilds.cache.get('884098680704077854').channels.cache.get('884103274704293899').send('Bot now online !')
+	bot.guilds.cache.get('884098680704077854').channels.cache.get('897847096881872977').send('Bot now online !')
 });
 
 (async () => {
