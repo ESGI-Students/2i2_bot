@@ -8,7 +8,7 @@ module.exports = {
 		.setName('poll')
 		.setDescription('Céer un sondage')
 		.addStringOption(option => option.setName('question').setDescription('Question du sondage').setRequired(true))
-		.addStringOption(option => option.setName('options').setDescription('Options du poll. Séparés par des | ').setRequired(true)),
+		.addStringOption(option => option.setName('options').setDescription('Options du poll. Séparées par des | ').setRequired(true)),
 	async execute(interaction, bot) {
 
 		if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) return interaction.reply({embeds: [bot.errorEmbed(`Vous n'avez pas la permission de faire cela !`)]});
