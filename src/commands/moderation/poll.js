@@ -30,10 +30,12 @@ module.exports = {
 			.setDescription(options.map((choice, i) => `${reactions[i]} ${choice}`).join("\n\n"))
 			.addField('Auteur', `**\`${interaction.member.user.tag}\`**`, true)
 			.setTimestamp()
-			.setColor(conf.embeds.colors.green);
+			.setColor(conf.embeds.colors.blurple);
 
 		let msg = await interaction.channel.send({embeds: [emb]});
 		
 		await interaction.reply({embeds: msg});
+
+		for (i = 0; i < options.length; i++) await sent.react(reactions[i]);
 	}
 };
