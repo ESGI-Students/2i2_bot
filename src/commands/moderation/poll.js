@@ -22,12 +22,8 @@ module.exports = {
 		if (!choice) return interaction.reply({embeds: [bot.errorEmbed(`Le sondage doit comporter au moins un choix.`)]});
 
 		const reactions = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸"];
-		
-<<<<<<< HEAD
-		const [question, ...choices] = interaction.join(" ").split(" ");
-=======
+
 		const [question, ...choices] = interaction.join(" ").split(" | ");
->>>>>>> 740fb0b4fbabd1f0553e5977023712962ae58830
 
 		if (choices.length > 20) return interaction.reply({embeds: [bot.errorEmbed(`Il ne peut pas y avoir plus de 20 choix.`)]});
 		
