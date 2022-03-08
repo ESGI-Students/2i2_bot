@@ -58,12 +58,12 @@ module.exports = {
                 let partyGridStr = ``;
                 for(let i = 0; i < party.grid.length; i++){
                     partyGridStr+=party.grid[i];
-                    if(i%3 == 0) partyGridStr+='\n';
+                    if((i+1)%3 == 0) partyGridStr+='\n';
                 }
                 let embParty = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
                     .setDescription(`Partie de <@${interaction.member.id}> et <@${user.id}>:
-                    C'est a <@${party.playing}> de mettre un ${party.playing == user.id ? '⭕' : '❌'}\n\n${partyGridStr}
+                    C'est a <@${party.playing}> de mettre un(e) ${party.playing == user.id ? '⭕' : '❌'}\n\n${partyGridStr}
                     
                     ❌ : <@${interaction.member.id}>
                     ⭕ : <@${user.id}>`);
