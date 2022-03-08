@@ -38,6 +38,7 @@ module.exports = {
                     game: 'Morpion',
                     playing: members[0],
                     state: ["↖️","⬆️","↗️","⬅️","⏺️","➡️","↙️","⬇️","↘️"],
+                    grid: [`⬜`,`⬜`,`⬜`,`⬜`,`⬜`,`⬜`,`⬜`,`⬜`,`⬜`]
                 };
 
                 let party = bot.games.parties[partiesCount];
@@ -53,11 +54,16 @@ module.exports = {
                 await interaction.channel.send(`----------------------------------------------------------
 <@${party.players[0]}> est le premier a jouer !
 ----------------------------------------------------------`);
-                let partyGrid = `⬜⬜⬜\n⬜⬜⬜\n⬜⬜⬜`;
+
+                let partyGridStr = ``;
+                for(let i = 0; i < party.grid.length; i++){
+                    partyGridStr+=party.grid[i];
+                    if(i%3 == 0) partyGridStr+='\n';
+                }
                 let embParty = new MessageEmbed() 
                     .setColor(conf.embeds.colors.blurple)
                     .setDescription(`Partie de <@${interaction.member.id}> et <@${user.id}>:
-                    C'est a <@${party.playing}> de mettre un ❌\n\n${partyGrid}
+                    C'est a <@${party.playing}> de mettre un ${party.playing == user.id ? '⭕' : '❌'}\n\n${partyGridStr}
                     
                     ❌ : <@${interaction.member.id}>
                     ⭕ : <@${user.id}>`);
