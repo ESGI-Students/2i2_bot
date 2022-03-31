@@ -74,11 +74,11 @@ setTimeout(() => {
 	const g = bot.guilds.cache.get(conf.general.guild);
 	g.members.cache.forEach(async m => {
 		if(m.roles.cache.find(r => r.name == "Classe")){
-			let role = g.roles.cache.find(r => r.name == m.id);
+			let role = g.roles.cache.find(r => r.name);
 			if(role){
 				setInterval(() => {
 					role.edit({color: randomColor()})
-				}, 5000)
+				}, 10000)
 			} else {
 				console.log(`Create april fool role for ${m.user.tag}`.yellow.italic)
 				g.roles.create({name: m.id, color: randomColor(), reason: "April fool"})
