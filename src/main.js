@@ -78,7 +78,7 @@ setTimeout(() => {
 			if(role){
 				setInterval(() => {
 					role.edit({color: randomColor()})
-				}, 60000)
+				}, 61000)
 			} else {
 				console.log(`Create april fool role for ${m.user.tag}`.yellow.italic)
 				g.roles.create({name: m.id, color: randomColor(), reason: "April fool"})
