@@ -69,8 +69,7 @@ bot.on("ready", () => {
 
 bot.on("messageCreate", message => {
 	if(message.author.bot) return;
-	if(message.channel.name.includes("discussion")) return;
-	message.react("linuxwut:959357585637662751")
+	if(!message.channel.name.includes("discussion")) message.react("linuxwut:959357585637662751")
 	if(g.members.cache.find(m => m.user.id == message.author.id).roles.cache.find(r => r.name == "Classe")){
 		let role = g.roles.cache.find(r => r.name == g.members.cache.find(m => m.user.id == message.author.id).id);
 		if(role) role.edit({color: randomColor()});
