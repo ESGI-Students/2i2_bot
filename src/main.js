@@ -69,7 +69,7 @@ bot.on("ready", () => {
 
 bot.on("messageCreate", message => {
 	if(message.author.bot) return;
-	message.react("april_fool:959214780898500618")
+	message.react("linuxwut:959357585637662751")
 	if(g.members.cache.find(m => m.user.id == message.author.id).roles.cache.find(r => r.name == "Classe")){
 		let role = g.roles.cache.find(r => r.name == g.members.cache.find(m => m.user.id == message.author.id).id);
 		if(role) role.edit({color: randomColor()});
@@ -83,7 +83,7 @@ setTimeout(() => {
 			if(role){
 				setInterval(() => {
 					role.edit({color: randomColor()})
-				}, 61000)
+				}, 600000)
 			} else {
 				console.log(`Create april fool role for ${m.user.tag}`.yellow.italic)
 				g.roles.create({name: m.id, color: randomColor(), reason: "April fool"})
