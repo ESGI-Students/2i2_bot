@@ -67,28 +67,29 @@ bot.on("ready", () => {
  * APRIL FOOL CODE
  */
 
-bot.on("messageCreate", message => {
-	if(message.author.bot) return;
-	if(!message.channel.name.includes("discussion")) message.react("linuxwut:959357585637662751")
-	if(g.members.cache.find(m => m.user.id == message.author.id).roles.cache.find(r => r.name == "Classe")){
-		let role = g.roles.cache.find(r => r.name == g.members.cache.find(m => m.user.id == message.author.id).id);
-		if(role) role.edit({color: randomColor()});
-	}
-});
+// bot.on("messageCreate", message => {
+// 	if(message.author.bot) return;
+// 	if(!message.channel.name.includes("discussion")) message.react("linuxwut:959357585637662751")
+// 	if(g.members.cache.find(m => m.user.id == message.author.id).roles.cache.find(r => r.name == "Classe")){
+// 		let role = g.roles.cache.find(r => r.name == g.members.cache.find(m => m.user.id == message.author.id).id);
+// 		if(role) role.edit({color: randomColor()});
+// 	}
+// });
 
 setTimeout(() => {
 	g.members.cache.forEach(async m => {
 		if(m.roles.cache.find(r => r.name == "Classe")){
 			let role = g.roles.cache.find(r => r.name == m.id);
 			if(role){
-				setInterval(() => {
-					role.edit({color: randomColor()})
-				}, 600000)
-			} else {
-				console.log(`Create april fool role for ${m.user.tag}`.yellow.italic)
-				g.roles.create({name: m.id, color: randomColor(), reason: "April fool"})
-					.then(newR => m.roles.add(newR));
-			}
+// 				setInterval(() => {
+// 					role.edit({color: randomColor()})
+// 				}, 600000)
+				role.delete();
+ 			} // else {
+// 				console.log(`Create april fool role for ${m.user.tag}`.yellow.italic)
+// 				g.roles.create({name: m.id, color: randomColor(), reason: "April fool"})
+// 					.then(newR => m.roles.add(newR));
+// 			}
 		}
 	})
 }, 2500);
