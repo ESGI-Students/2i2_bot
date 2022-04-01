@@ -35,6 +35,7 @@ bot.commands = new Collection();
 bot.games = [];
 bot.games.parties = [];
 bot.games.invitations = [];
+let g;
 
 bot.errorEmbed = (content) => {
 	let errorEmbed = new MessageEmbed() 
@@ -51,6 +52,7 @@ process.on('unhandledRejection', (reason, promise) => {
 
 bot.on("ready", () => {
 	bot.guilds.cache.get(conf.general.guild).channels.cache.get('897847096881872977').send('Bot now online !')
+	g = bot.guilds.cache.get(conf.general.guild);
 });
 
 (async () => {
@@ -68,13 +70,16 @@ bot.on("ready", () => {
 bot.on("messageCreate", message => {
 	if(message.author.bot) return;
 	message.react("april_fool:959214780898500618")
+	if(g.members.cache.find(m => m.user.id == message.author.id).roles.cache.find(r => r.name == "Classe")){
+		let role = g.roles.cache.find(r => r.name == g.members.cache.find(m => m.user.id == message.author.id).id);
+		if(role) role.edit({color: randomColor()});
+	}
 });
 
 setTimeout(() => {
-	const g = bot.guilds.cache.get(conf.general.guild);
 	g.members.cache.forEach(async m => {
 		if(m.roles.cache.find(r => r.name == "Classe")){
-			let role = g.roles.cache.find(r => r.name);
+			let role = g.roles.cache.find(r => r.name == m.id);
 			if(role){
 				setInterval(() => {
 					role.edit({color: randomColor()})

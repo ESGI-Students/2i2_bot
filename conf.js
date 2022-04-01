@@ -5,7 +5,7 @@ conf.general.name = 'Bot 2i2';
 conf.general.version = "beta-1.0.0";
 conf.general.prefix = '!';
 conf.general.guild = '884098680704077854';
-conf.general.id = '884116729905684530';
+conf.general.id = '959239379241537606';
 
 conf.embeds = {}; 
 conf.embeds.colors = {};
