@@ -4,23 +4,38 @@ const mysql = require('mysql');
 const conf = require('../conf');
 const { Client, Intents, Collection, MessageEmbed } = require('discord.js');
 const bot = new Client({
-	intents:[Intents.FLAGS.GUILDS],
+	intents: new Intents(32767),
 	presence: {
-		status: 'online',
-		activity: {
+		status: "dnd",
+		activities: [{
 			name: 'In Dev...',
 			type: 'PLAYING'
-		}
+		}]
 	}
 });
 const handlers = fs.readdirSync('./src/handlers').filter(file => file.endsWith('.js'));
 const events = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
 const commands = fs.readdirSync('./src/commands');
 
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const randomColor = () => {
+	let color = '#';
+	for (let i = 0; i < 6; i++){
+		const random = Math.random();
+		const bit = (random * 16) | 0;
+		color += (bit).toString(16);
+	};
+	return color;
+}
+
 bot.commands = new Collection();
 bot.games = [];
 bot.games.parties = [];
 bot.games.invitations = [];
+let g;
 
 bot.errorEmbed = (content) => {
 	let errorEmbed = new MessageEmbed() 
@@ -36,7 +51,8 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 bot.on("ready", () => {
-	bot.guilds.cache.get('884098680704077854').channels.cache.get('897847096881872977').send('Bot now online !')
+	bot.guilds.cache.get(conf.general.guild).channels.cache.get('897847096881872977').send('Bot now online !')
+	g = bot.guilds.cache.get(conf.general.guild);
 });
 
 (async () => {
@@ -46,3 +62,33 @@ bot.on("ready", () => {
 	bot.handleCommands(commands, './src/commands');
 	bot.login(process.env.TOKEN);
 })();
+
+/**
+ * APRIL FOOL CODE
+ */
+
+bot.on("messageCreate", message => {
+	if(message.author.bot) return;
+	if(!message.channel.name.includes("discussion")) message.react("linuxwut:959357585637662751")
+	if(g.members.cache.find(m => m.user.id == message.author.id).roles.cache.find(r => r.name == "Classe")){
+		let role = g.roles.cache.find(r => r.name == g.members.cache.find(m => m.user.id == message.author.id).id);
+		if(role) role.edit({color: randomColor()});
+	}
+});
+
+setTimeout(() => {
+	g.members.cache.forEach(async m => {
+		if(m.roles.cache.find(r => r.name == "Classe")){
+			let role = g.roles.cache.find(r => r.name == m.id);
+			if(role){
+				setInterval(() => {
+					role.edit({color: randomColor()})
+				}, 600000)
+			} else {
+				console.log(`Create april fool role for ${m.user.tag}`.yellow.italic)
+				g.roles.create({name: m.id, color: randomColor(), reason: "April fool"})
+					.then(newR => m.roles.add(newR));
+			}
+		}
+	})
+}, 2500);
